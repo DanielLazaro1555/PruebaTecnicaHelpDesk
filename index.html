@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio de Preguntas y Respuestas de Helpdesk All Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="Icono.png">
+    <style>
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+
+
+<body class="bg-gray-100 text-gray-900">
+
+    <header class="bg-blue-600 p-6 text-2xl text-center text-white font-bold">
+        Portafolio de Preguntas y Respuestas de Helpdesk All Services
+    </header>
+
+    <div class="container p-6 mx-auto">
+        <div class="space-y-6">
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-blue-600 text-xl font-semibold">1. Explique 3 patrones utilizados en programación y
+                    proporcione un ejemplo de uso para cada uno.</h2>
+                <p class="mt-2"><strong>Patrón Singleton:</strong> Garantiza una única instancia de una clase.</p>
+                <pre class="bg-gray-200 p-2 rounded text-sm mt-2">public class Singleton {
+    private static Singleton instancia;
+    private Singleton() {}
+    public static Singleton getInstancia() {
+        if (instancia == null) instancia = new Singleton();
+        return instancia;
+    }
+}</pre>
+                <p class="mt-2"><strong>Patrón Observador:</strong> Permite que múltiples objetos sean notificados de
+                    cambios en otro objeto.</p>
+                <pre class="bg-gray-200 p-2 rounded text-sm mt-2">interface Observador {
+    void actualizar(String mensaje);
+}
+
+class Sujeto {
+    private List<Observador> observadores = new ArrayList<>();
+    void agregarObservador(Observador o) { observadores.add(o); }
+    void notificar(String mensaje) {
+        for (Observador o : observadores) o.actualizar(mensaje);
+    }
+}</pre>
+                <p class="mt-2"><strong>Patrón Fábrica:</strong> Facilita la creación de objetos sin especificar la
+                    clase exacta.</p>
+                <pre class="bg-gray-200 p-2 rounded text-sm mt-2">class Fabrica {
+    public static Producto crearProducto(String tipo) {
+        if (tipo.equals("A")) return new ProductoA();
+        else return new ProductoB();
+    }
+}</pre>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-blue-600 text-xl font-semibold">2. ¿Cuál es la diferencia entre una base de datos
+                    relacional y una no relacional? Proporcione 2 ejemplos.</h2>
+                <p class="mt-2"><strong>Relacionales:</strong> Basadas en SQL, organizadas en tablas. Ejemplo: MySQL,
+                    PostgreSQL.</p>
+                <pre class="bg-gray-200 p-2 rounded text-sm mt-2">-- Ejemplo en MySQL
+CREATE TABLE Empleados (
+    id INT PRIMARY KEY,
+    nombre VARCHAR(100),
+    salario DECIMAL(10,2)
+);
+
+INSERT INTO Empleados (id, nombre, salario) VALUES (1, 'Juan', 2500.00);
+SELECT * FROM Empleados WHERE salario > 2000;</pre>
+                <p class="mt-2"><strong>No Relacionales:</strong> Basadas en documentos JSON o clave-valor. Ejemplo:
+                    MongoDB, Firebase.</p>
+                <pre class="bg-gray-200 p-2 rounded text-sm mt-2">// Ejemplo en MongoDB
+db.empleados.insertOne({ "id": 1, "nombre": "Juan", "salario": 2500 })
+db.empleados.find({ "salario": { "$gt": 2000 } })</pre>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-blue-600 text-xl font-semibold">3. En programación web, al enviar los datos de
+                    formularios, ¿es mejor usar el método GET o POST? Explique y dé 2 ejemplos.</h2>
+                <p class="mt-2"><strong>¿Cuál es mejor?</strong> En la mayoría de los casos, <strong>POST</strong> es la
+                    mejor opción, ya que es más seguro y adecuado para enviar datos sensibles como contraseñas o
+                    información personal. Sin embargo, <strong>GET</strong> es útil cuando solo se necesitan recuperar
+                    datos sin realizar cambios en el servidor.</p>
+
+                <p class="mt-2"><strong>GET:</strong> Se utiliza cuando se quiere enviar datos a través de la URL. Es
+                    útil para búsquedas y accesos rápidos a recursos. Sin embargo, tiene limitaciones de tamaño y no es
+                    seguro para datos sensibles.</p>
+                <pre
+                    class="bg-gray-200 p-2 rounded text-sm mt-2">&lt;a href="buscar.php?query=producto"&gt;Buscar Producto&lt;/a&gt;</pre>
+                <p class="mt-2"><strong>Ejemplo en PHP con GET:</strong></p>
+                <pre class="bg-gray-200 p-2 rounded text-sm mt-2">&lt;?php
+if(isset($_GET['query'])) {
+    echo "Buscando: " . htmlspecialchars($_GET['query']);
+}
+?&gt;</pre>
+
+                <p><strong>POST:</strong> Se usa cuando se necesita enviar información de manera segura, sin mostrar los
+                    datos en la URL. Es ideal para formularios de autenticación o envío de información sensible.</p>
+                <pre class="bg-gray-200 p-2 rounded text-sm mt-2">&lt;form action="login.php" method="POST"&gt;
+    &lt;input type="text" name="usuario"&gt;
+    &lt;input type="password" name="clave"&gt;
+    &lt;input type="submit" value="Ingresar"&gt;
+&lt;/form&gt;</pre>
+                <p class="mt-2"><strong>Ejemplo en PHP con POST:</strong></p>
+                <pre class="bg-gray-200 p-2 rounded text-sm mt-2">&lt;?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $usuario = htmlspecialchars($_POST['usuario']);
+    echo "Bienvenido, " . $usuario;
+}
+?&gt;</pre>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-blue-600 text-xl font-semibold">4. ¿Cuál es la diferencia entre archivos JSON y archivos
+                    XML? Explique y dé 2 ejemplos.</h2>
+                <p class="mt-2"><strong>JSON:</strong> Formato ligero y fácil de leer. Ejemplo: API Rest.</p>
+                <pre class="bg-gray-200 p-2 rounded text-sm mt-2">{"nombre": "Daniel", "edad": 25}</pre>
+                <p><strong>XML:</strong> Más estructurado pero con mayor sobrecarga. Ejemplo: Configuración de sistemas.
+                </p>
+                <pre
+                    class="bg-gray-200 p-2 rounded text-sm mt-2">&lt;persona&gt;&lt;nombre&gt;Daniel&lt;/nombre&gt;&lt;edad&gt;25&lt;/edad&gt;&lt;/persona&gt;</pre>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-blue-600 text-xl font-semibold">5. En SQL Server, ¿cuál es la diferencia entre las
+                    consultas SELECT al utilizar LEFT JOIN, RIGHT JOIN e INNER JOIN? Explique y proporcione un ejemplo.
+                </h2>
+                <p class="mt-2"><strong>LEFT JOIN:</strong> Devuelve todos los registros de la tabla izquierda y los
+                    coincidentes de la derecha. Si no hay coincidencias, devuelve NULL.</p>
+                <p><strong>RIGHT JOIN:</strong> Devuelve todos los registros de la tabla derecha y los coincidentes de
+                    la izquierda. Si no hay coincidencias, devuelve NULL.</p>
+                <p><strong>INNER JOIN:</strong> Solo devuelve los registros que tienen coincidencias en ambas tablas.
+                </p>
+                <pre class="bg-gray-200 p-2 rounded text-sm mt-2">-- Ejemplo en SQL Server
+SELECT empleados.nombre, departamentos.nombre
+FROM empleados
+LEFT JOIN departamentos ON empleados.depto_id = departamentos.id;</pre>
+                <pre class="bg-gray-200 p-2 rounded text-sm mt-2">-- Ejemplo con RIGHT JOIN
+SELECT empleados.nombre, departamentos.nombre
+FROM empleados
+RIGHT JOIN departamentos ON empleados.depto_id = departamentos.id;</pre>
+                <pre class="bg-gray-200 p-2 rounded text-sm mt-2">-- Ejemplo con INNER JOIN
+SELECT empleados.nombre, departamentos.nombre
+FROM empleados
+INNER JOIN departamentos ON empleados.depto_id = departamentos.id;</pre>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-blue-600 text-xl font-semibold">6. Escriba un pseudocódigo para un programa que detecte
+                    el número de palabras en un archivo de texto.</h2>
+                <pre class="bg-gray-200 p-2 rounded text-sm mt-2">Inicio
+    Abrir archivo "texto.txt"
+    Leer contenido del archivo
+    Separar palabras por espacio en blanco
+    Contar cantidad de palabras
+    Mostrar el total de palabras
+Fin</pre>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-blue-600 text-xl font-semibold">7. Describa una solución para resolver un sistema de
+                    inventario en un almacén.</h2>
+                <p class="mt-2"><strong>¿Cómo manejaría las actualizaciones y consultas concurrentes?</strong></p>
+                <p>Para manejar actualizaciones y consultas concurrentes en una base de datos de inventario, se pueden
+                    utilizar bloqueos optimistas y transacciones. Esto previene inconsistencias al permitir que
+                    múltiples usuarios accedan a los datos sin bloquear innecesariamente los registros.</p>
+                <pre class="bg-gray-200 p-2 rounded text-sm mt-2">-- Ejemplo en SQL para transacciones
+START TRANSACTION;
+UPDATE productos SET cantidad = cantidad - 1 WHERE id = 10;
+COMMIT;</pre>
+                <p class="mt-2"><strong>¿Cómo diseñaría un sistema para detectar y notificar automáticamente cuando un
+                        producto esté por debajo del nivel mínimo de inventario?</strong></p>
+                <p>Se puede implementar un proceso automatizado que verifique periódicamente los niveles de stock y
+                    envíe notificaciones cuando un producto esté por debajo del umbral mínimo.</p>
+                <pre class="bg-gray-200 p-2 rounded text-sm mt-2">-- Ejemplo en SQL para detectar inventario bajo
+SELECT * FROM productos WHERE cantidad < nivel_minimo;</pre>
+                <pre class="bg-gray-200 p-2 rounded text-sm mt-2">// Ejemplo en Python para enviar alerta automática
+if producto["cantidad"] < producto["nivel_minimo"]:
+    print(f"⚠️ Alerta: El producto {producto['nombre']} está bajo en stock")</pre>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
